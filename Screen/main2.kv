@@ -1,0 +1,59 @@
+#:kivy !
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    MDLabel:
+        text: "Menu"
+        font_style: "Subtitle1"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+        MDList:
+            OneLineIconListItem:
+                text: "Item 1"
+                IconLeftWidget:
+                    icon: "android"
+            OneLineIconListItem:
+                text: "Item 2"
+                IconLeftWidget:
+                    icon: "android"
+            OneLineIconListItem:
+                text: "Item 3"
+                IconLeftWidget:
+                    icon: "android"
+
+Screen:
+
+    MDNavigationLayout:
+        ScreenManager:
+            id: screen_manager
+
+            Screen:
+                name: "main_screen"
+
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: "10dp"
+                    padding: "10dp"
+
+                    MDTopAppBar:
+                        title: "Menu"
+                        elevation: 10
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+                    MDLabel:
+                        text: "Welcome to the main screen!"
+                        align: "top"
+
+                    MDRaisedButton:
+                        text: "Go to other screen"
+                        on_press: app.go_to_other_screen()
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer

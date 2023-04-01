@@ -1,0 +1,107 @@
+<ContentNavigationDrawer>:
+
+    MDList:
+
+        OneLineListItem:
+            text: "Enregistrement"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "principal"
+
+        OneLineListItem:
+            text: "Destination"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "dest"
+
+        OneLineListItem:
+            text: "Vols"
+            on_press:
+                root.nav_drawer.set_state("close")
+                root.screen_manager.current = "vol"
+
+
+MDScreen:
+
+    MDTopAppBar:
+        pos_hint: {"top": 1}
+        elevation: 6
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+        title: "Menu"
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+            id: screen_manager
+
+            MDScreen:
+                name: "principal"
+
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint: 1, 0.8
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                    MDLabel:
+                        id: bonjour
+                        text: "Ia orana ! Bienvenue sur Air Tahiti Skyline"
+                        font_style: "H6"
+                        theme_text_color: "Primary"
+                        halign: "center"
+                        size_hint: 1, 0.8
+
+                    MDFlatButton:
+                        id: drop_menu
+                        text: 'Veuillez sélectionner une destination'
+                        font_size: '20sp'
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        on_release: app.show_menu()
+                        canvas.before:
+                            Color:
+                                rgba: 160, 107, 79, 33  # rouge
+                            Line:
+                                width: 1
+                                rectangle: self.x, self.y, self.width, self.height
+
+                    MDLabel:
+                        id: time_label
+                        theme_text_color: "Primary"
+                        font_size: "80sp"
+                        halign: "center"
+                        valign: "top"
+
+                    MDLabel:
+                        id: duree
+                        text: ""
+                        font_size: "30sp"
+                        halign: "center"
+
+                    MDRaisedButton:
+                        id: bouton
+                        text: "Démarrer"
+                        font_size: "30sp"
+                        size_hint_x: 0.3
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        on_release: app.save_fly()
+
+            MDScreen:
+                name: "dest"
+
+                MDLabel:
+                    text: "Screen 2"
+                    halign: "center"
+
+            MDScreen:
+                name: "vol"
+
+                MDLabel:
+                    text: "Screen 3"
+                    halign: "center"
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer

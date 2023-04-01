@@ -1,0 +1,80 @@
+ScreenManager:
+    id: screen_manager
+    
+    MenuPrincipal:
+        name: 'menu_principal'
+        
+    ListeDest:
+        name: 'liste_dest'
+        
+    ListeVols:
+        name: 'liste_vols'
+
+    NavigationLayout:
+        id: nav_layout
+        
+        MDNavigationDrawer:
+            id: nav_drawer
+            
+            MDBoxLayout:
+                orientation: 'vertical'
+                
+                MDToolbar:
+                    title: 'Menu'
+                    elevation: 10
+                
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: 'Menu Principal'
+                            on_release: 
+                                screen_manager.current = 'menu_principal'
+                                nav_layout.toggle_nav_drawer()
+                                
+                        OneLineListItem:
+                            text: 'Liste des destinations'
+                            on_release: 
+                                screen_manager.current = 'liste_dest'
+                                nav_layout.toggle_nav_drawer()
+                                
+                        OneLineListItem:
+                            text: 'Liste des vols'
+                            on_release: 
+                                screen_manager.current = 'liste_vols'
+                                nav_layout.toggle_nav_drawer()
+
+        Screen:
+            name: 'menu_principal'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: 'Menu Principal'
+                    elevation: 10
+                MDLabel:
+                    text: 'Bienvenue sur l\'écran du Menu Principal'
+                    halign: 'center'
+                    valign: 'center'
+
+        Screen:
+            name: 'liste_dest'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: 'Liste des Destinations'
+                    elevation: 10
+                MDLabel:
+                    text: 'Bienvenue sur l\'écran de la Liste des Destinations'
+                    halign: 'center'
+                    valign: 'center'
+
+        Screen:
+            name: 'liste_vols'
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: 'Liste des Vols'
+                    elevation: 10
+                MDLabel:
+                    text: 'Bienvenue sur l\'écran de la Liste des Vols'
+                    halign: 'center'
+                    valign: 'center'

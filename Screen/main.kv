@@ -1,0 +1,32 @@
+#:kivy!
+<MenuPrincipal>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Ia orana'
+            font_size: 30
+        Button:
+            text: 'Liste des destinations'
+            on_release: root.manager.current = 'dest'
+
+<ListeDest>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Veuillez sélectionner une destinations'
+            font_size: 30
+        Button:
+            text: 'Liste des vols'
+            on_release: root.manager.current = 'vols'
+            color: 1, 1, 1, 1
+
+<ListeVols>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Autre écran'
+            font_size: 30
+        Button:
+            text: 'Retour au menu'
+            on_release: root.manager.current = 'menu'
+            color: 1, 1, 1, 1
