@@ -44,23 +44,38 @@ MDScreen:
 
                     MDLabel:
                         id: bonjour
-                        text: "Ia orana ! Bienvenue sur Air Tahiti Skyline"
+                        text: "Ia orana ! Bienvenue sur Air Tahiti Flylog"
                         font_style: "H6"
                         theme_text_color: "Primary"
                         halign: "center"
                         size_hint: 1, 0.8
 
                     MDFlatButton:
-                        id: drop_menu
-                        text: 'Veuillez sélectionner une destination'
+                        id: depart
+                        text: 'Départ'
                         font_size: '20sp'
+                        size_hint_x: 0.3
                         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-                        on_release: app.show_menu()
+                        on_release: app.show_menu1()
                         canvas.before:
                             Color:
-                                rgba: 160, 107, 79, 33  # rouge
+                                rgba: 100, 0, 0, 33  # rouge
                             Line:
-                                width: 1
+                                width: 2
+                                rectangle: self.x, self.y, self.width, self.height
+
+                    MDFlatButton:
+                        id: arrive
+                        text: 'Arrivée'
+                        font_size: '20sp'
+                        size_hint_x: 0.3
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                        on_release: app.show_menu2()
+                        canvas.before:
+                            Color:
+                                rgba: 100, 0, 0, 33  # rouge
+                            Line:
+                                width: 2
                                 rectangle: self.x, self.y, self.width, self.height
 
                     MDLabel:
@@ -87,16 +102,30 @@ MDScreen:
             MDScreen:
                 name: "dest"
 
-                MDLabel:
-                    text: "Screen 2"
-                    halign: "center"
+                BoxLayout:
+                    orientation: "vertical"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                    MDLabel:
+                        text: "Ajouter une destination"
+                        halign: "center"
 
             MDScreen:
                 name: "vol"
 
-                MDLabel:
-                    text: "Screen 3"
-                    halign: "center"
+                BoxLayout:
+                    orientation: "vertical"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                    MDLabel:
+                        text: "Consulter la liste des vols"
+                        halign: "center"
+
+                    MDLabel:
+                        id: list_vol
+                        text: ""
+                        halign: "center"
+                        valign: "top"
 
         MDNavigationDrawer:
             id: nav_drawer
